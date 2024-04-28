@@ -16,7 +16,7 @@
 
 <textarea id="urlTextarea" rows="2" cols="50" placeholder="URL"></textarea>
 <button id="connectButton">Connect</button>
-<button>Disconnect</button><br><br><br>
+<button id="disconnectButton">Disconnect</button><br><br><br>
 
 <textarea id="myTextarea" rows="4" cols="50"></textarea><br>
 
@@ -47,6 +47,14 @@
             // Log any errors that occur during the fetch operation
             console.error('There was a problem with the fetch operation:', error);
         });
+    });
+
+    // Function to handle the click event of the Disconnect button
+    document.getElementById("disconnectButton").addEventListener("click", function() {
+        // Reset connection status to "Disconnected"
+        document.getElementById("connectionStatus").textContent = "Disconnected";
+        // Enable the first textarea
+        document.getElementById("urlTextarea").disabled = false;
     });
 </script>
 
