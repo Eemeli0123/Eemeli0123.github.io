@@ -28,6 +28,9 @@
         // Get the URL from the first textarea
         var url = document.getElementById("urlTextarea").value;
 
+        // Disable the first textarea
+        document.getElementById("urlTextarea").disabled = true;
+
         // Send an HTTP GET request to the specified URL
         fetch(url, {
             method: 'GET'
