@@ -29,20 +29,22 @@
         var url = document.getElementById("urlTextarea").value;
 
         // Send an HTTP GET request to the specified URL
-        fetch(url)
-            .then(response => {
-                if (response.ok) {
-                    // If the response status is 200 (OK), update connection status to "Connected"
-                    document.getElementById("connectionStatus").textContent = "Connected";
-                } else {
-                    // If the response status is not 200, log an error
-                    console.error('Network response was not ok. Status: ' + response.status);
-                }
-            })
-            .catch(error => {
-                // Log any errors that occur during the fetch operation
-                console.error('There was a problem with the fetch operation:', error);
-            });
+        fetch(url, {
+            method: 'GET'
+        })
+        .then(response => {
+            if (response.ok) {
+                // If the response status is 200 (OK), update connection status to "Connected"
+                document.getElementById("connectionStatus").textContent = "Connected";
+            } else {
+                // If the response status is not 200, log an error
+                console.error('Network response was not ok. Status: ' + response.status);
+            }
+        })
+        .catch(error => {
+            // Log any errors that occur during the fetch operation
+            console.error('There was a problem with the fetch operation:', error);
+        });
     });
 </script>
 
