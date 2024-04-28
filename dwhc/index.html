@@ -4,18 +4,47 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>DWHC</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+    </style>
 </head>
 <body>
 
 <h1 id="connectionStatus">Disconnected</h1>
 
 <textarea id="urlTextarea" rows="2" cols="50" placeholder="URL"></textarea>
-<button>Connect</button>
+<button id="connectButton">Connect</button>
 <button>Disconnect</button><br><br><br>
 
 <textarea id="myTextarea" rows="4" cols="50"></textarea><br>
 
 <button>Send</button>
+
+<script>
+    // Function to handle the click event of the Connect button
+    document.getElementById("connectButton").addEventListener("click", function() {
+        // Get the URL from the first textarea
+        var url = document.getElementById("urlTextarea").value;
+
+        // Send an HTTP GET request to the specified URL
+        fetch(url)
+            .then(response => {
+                if (response.ok) {
+                    // If the response status is 200 (OK), update connection status to "Connected"
+                    document.getElementById("connectionStatus").textContent = "Connected";
+                } else {
+                    // If the response status is not 200, log an error
+                    console.error('Network response was not ok. Status: ' + response.status);
+                }
+            })
+            .catch(error => {
+                // Log any errors that occur during the fetch operation
+                console.error('There was a problem with the fetch operation:', error);
+            });
+    });
+</script>
 
 </body>
 </html>
