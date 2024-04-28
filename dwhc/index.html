@@ -28,9 +28,6 @@
         // Get the URL from the first textarea
         var url = document.getElementById("urlTextarea").value;
 
-        // Disable the first textarea
-        document.getElementById("urlTextarea").disabled = true;
-
         // Send an HTTP GET request to the specified URL
         fetch(url, {
             method: 'GET'
@@ -39,6 +36,8 @@
             if (response.ok) {
                 // If the response status is 200 (OK), update connection status to "Connected"
                 document.getElementById("connectionStatus").textContent = "Connected";
+                // Disable the first textarea
+                document.getElementById("urlTextarea").disabled = true;
             } else {
                 // If the response status is not 200, log an error
                 console.error('Network response was not ok. Status: ' + response.status);
