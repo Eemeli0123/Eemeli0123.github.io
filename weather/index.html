@@ -44,11 +44,10 @@
       const weatherHeadingElement = document.getElementById('weatherHeading');
       const weatherContentElement = document.getElementById('weatherContent');
 
-      weatherHeadingElement.textContent = `Weather in ${data.location.name}`;
-      const emoji = getWeatherEmoji(data.current.condition.code);
+      weatherHeadingElement.textContent = `Weather in ${data.location.name}, ${data.location.region}, ${data.location.country}`;
       weatherContentElement.innerHTML = `
-        <p>${emoji} Current Temperature: ${data.current.temp_c}°C / ${data.current.temp_f}°F</p>
-        <p>${emoji} Condition: ${data.current.condition.text}</p>
+        <p>Current Temperature: ${data.current.temp_c}°C / ${data.current.temp_f}°F</p>
+        <p>Condition: ${data.current.condition.text}</p>
       `;
     })
     .catch(error => {
@@ -56,25 +55,6 @@
       const weatherContentElement = document.getElementById('weatherContent');
       weatherContentElement.innerHTML = '<p>Failed to fetch weather data. Please try again later.</p>';
     });
-
-  function getWeatherEmoji(weatherCode) {
-    switch (weatherCode) {
-      case 1000: // Sunny
-        return '☀️';
-      case 1003: // Partly cloudy
-        return '⛅';
-      case 1006: // Cloudy
-        return '☁️';
-      case 1180: // Light rain showers
-        return '🌦️';
-      case 1183: // Patchy rain nearby
-        return '🌦️';
-      case 1186: // Moderate or heavy rain shower
-        return '🌧️';
-      default:
-        return '🌍'; // Generic emoji for unknown weather
-    }
-  }
 </script>
 
 </body>
