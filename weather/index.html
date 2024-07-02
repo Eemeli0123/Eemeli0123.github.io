@@ -32,8 +32,8 @@
 
 <script>
   // Replace 'YOUR_API_KEY' with your actual WeatherAPI key
-  const apiKey = 'YOUR_API_KEY';
-  const apiUrl = `https://api.weatherapi.com/v1/current.json?key=096efd03636a466e95b125113240207&q=Lemi`;
+  const apiKey = '096efd03636a466e95b125113240207';
+  const apiUrl = `https://api.weatherapi.com/v1/current.json?key=${apiKey}&q=Lemi`;
 
   fetch(apiUrl)
     .then(response => response.json())
