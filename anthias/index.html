@@ -53,9 +53,9 @@
         // Function to update the weather every 10 minutes
         async function updateWeather() {
             try {
-                const response = await fetch('https://api.openweathermap.org/data/2.5/weather?q=London&appid=YOUR_API_KEY&units=metric');
+                const response = await fetch('http://api.weatherapi.com/v1/current.json?key=096efd03636a466e95b125113240207&q=Lemi&aqi=no');
                 const data = await response.json();
-                const weatherString = `${data.weather[0].description}, ${data.main.temp}°C`;
+                const weatherString = `${data.current.condition.text}, ${data.current.temp_c}°C`;
                 document.getElementById('weatherDisplay').textContent = weatherString;
             } catch (error) {
                 document.getElementById('weatherDisplay').textContent = 'Error fetching weather data';
