@@ -17,7 +17,7 @@
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
             max-width: 800px;
         }
-        .clock, .weather {
+        .clock, .date, .weather {
             margin: 20px 0;
         }
     </style>
@@ -25,6 +25,10 @@
 <body>
     <div class="container">
         <h1>Welcome to Anthias Digital Signage</h1>
+        <div class="date">
+            <h2>Current Date</h2>
+            <div id="dateDisplay"></div>
+        </div>
         <div class="clock">
             <h2>Current Time</h2>
             <div id="clockDisplay"></div>
@@ -36,19 +40,24 @@
     </div>
 
     <script>
-        // Function to update the clock every second
-        function updateClock() {
+        // Function to update the clock and date every second
+        function updateClockAndDate() {
             const now = new Date();
             const hours = now.getHours();
             const minutes = now.getMinutes();
             const seconds = now.getSeconds();
             const timeString = `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
             document.getElementById('clockDisplay').textContent = timeString;
+
+            const options = { year: 'numeric', month: 'long', day: 'numeric' };
+            const dateString = now.toLocaleDateString(undefined, options);
+            document.getElementById('dateDisplay').textContent = dateString;
         }
 
-        // Update the clock every second
-        setInterval(updateClock, 1000);
-        updateClock();
+        // Update the clock and date every second
+        setInterval(updateClockAndDate, 1000);
+        updateClockAndDate();
+
 
         // Function to update the weather every 10 minutes
         async function updateWeather() {
