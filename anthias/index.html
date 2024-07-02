@@ -19,6 +19,7 @@
         }
         .clock, .date, .weather {
             margin: 20px 0;
+            font-size: 2em; /* Equivalent to h2 font size */
         }
     </style>
 </head>
@@ -57,7 +58,6 @@
         // Update the clock and date every second
         setInterval(updateClockAndDate, 1000);
         updateClockAndDate();
-
 
         // Function to update the weather every 10 minutes
         async function updateWeather() {
