@@ -44,7 +44,7 @@
       const emoji = getWeatherEmoji(data.current.condition.code);
       weatherContentElement.innerHTML = `
         <p><h1>${emoji} Weather in ${data.location.name}, ${data.location.region}, ${data.location.country}</h1></p>
-        <p><h1>${emoji} Current Temperature: ${data.current.temp_c}°C / ${data.current.temp_f}°F</h1></p>
+        <p><h1>${emoji} Current Temperature: ${data.current.temp_c}°C</h1></p>
         <p><h1>${emoji} Condition: ${data.current.condition.text}</h1></p>
       `;
     })
