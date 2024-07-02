@@ -1,7 +1,10 @@
-<html lang="en"><head>
+<!DOCTYPE html>
+<html lang="en">
+<head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Weather Information</title><style>
+<title>Weather Information</title>
+<style>
   body {
     display: flex;
     justify-content: center;
@@ -19,12 +22,11 @@
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   }
 </style>
-
 </head>
 <body>
 
 <div class="weather-info">
-  <h1 id="cityName">Loading...</h1>
+  <h1 id="weatherHeading">Weather Information</h1>
   <div id="weatherContent">
     <p>Loading weather data...</p>
   </div>
@@ -33,20 +35,20 @@
 <script>
   // Replace 'YOUR_API_KEY' with your actual WeatherAPI key
   const apiKey = '096efd03636a466e95b125113240207';
-  const apiUrl = `https://api.weatherapi.com/v1/current.json?key=${apiKey}&q=Lemi`;
+  const apiUrl = `https://api.weatherapi.com/v1/current.json?key=${apiKey}&q=New York`;
 
   fetch(apiUrl)
     .then(response => response.json())
     .then(data => {
       console.log(data); // Log the JSON response for inspection
-      const cityNameElement = document.getElementById('cityName');
+      const weatherHeadingElement = document.getElementById('weatherHeading');
       const weatherContentElement = document.getElementById('weatherContent');
 
-      cityNameElement.textContent = `Weather in ${data.location.name}`;
+      weatherHeadingElement.textContent = `Weather in ${data.location.name}`;
       const emoji = getWeatherEmoji(data.current.condition.code);
       weatherContentElement.innerHTML = `
-        <p>Current Temperature: ${data.current.temp_c}°C / ${data.current.temp_f}°F ${emoji}</p>
-        <p>Condition: ${data.current.condition.text}</p>
+        <p>${emoji} Current Temperature: ${data.current.temp_c}°C / ${data.current.temp_f}°F</p>
+        <p>${emoji} Condition: ${data.current.condition.text}</p>
       `;
     })
     .catch(error => {
@@ -57,24 +59,23 @@
 
   function getWeatherEmoji(weatherCode) {
     switch (weatherCode) {
-        case 1000: // Sunny
-            return '☀️';
-        case 1003: // Partly cloudy
-            return '⛅';
-        case 1006: // Cloudy
-            return '☁️';
-        case 1180: // Light rain showers
-            return '🌦️';
-        case 1183: // Patchy rain nearby
-            return '🌦️';
-        case 1186: // Moderate or heavy rain shower
-            return '🌧️';
-        default:
-            return '🌍'; // Generic emoji for unknown weather
+      case 1000: // Sunny
+        return '☀️';
+      case 1003: // Partly cloudy
+        return '⛅';
+      case 1006: // Cloudy
+        return '☁️';
+      case 1180: // Light rain showers
+        return '🌦️';
+      case 1183: // Patchy rain nearby
+        return '🌦️';
+      case 1186: // Moderate or heavy rain shower
+        return '🌧️';
+      default:
+        return '🌍'; // Generic emoji for unknown weather
     }
-}
-
+  }
 </script>
 
-
-</body></html>
+</body>
+</html>
