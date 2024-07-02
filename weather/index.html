@@ -26,7 +26,7 @@
 <body>
 
 <div class="weather-info">
-  <h1 id="weatherHeading">Weather Information</h1>
+  <h1>Weather Information</h1>
   <div id="weatherContent">
     <p>Loading weather data...</p>
   </div>
@@ -41,11 +41,10 @@
     .then(response => response.json())
     .then(data => {
       console.log(data); // Log the JSON response for inspection
-      const weatherHeadingElement = document.getElementById('weatherHeading');
       const weatherContentElement = document.getElementById('weatherContent');
 
-      weatherHeadingElement.textContent = `Weather in ${data.location.name}, ${data.location.region}, ${data.location.country}`;
       weatherContentElement.innerHTML = `
+        <p>Weather in ${data.location.name}, ${data.location.region}, ${data.location.country}</p>
         <p>Current Temperature: ${data.current.temp_c}°C / ${data.current.temp_f}°F</p>
         <p>Condition: ${data.current.condition.text}</p>
       `;
